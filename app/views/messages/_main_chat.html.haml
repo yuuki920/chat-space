@@ -1,0 +1,32 @@
+.chat-main
+  .chat-header
+    .chat-header-left
+      .chat-header-left__title
+        title
+      %ul.chat-header-left__members
+        member:
+        %li.chat-header-left__members__member
+          name
+    .chat-header-right
+      = link_to "#", class: "chat-header-right__btn" do
+        Edit
+        
+  .chat-message
+    .chat-contents
+      .chat-message-user
+        .chat-message-user__user-name
+          name
+        .chat-message-user__day
+          20200411
+      .chat-message-user-message
+        name
+    
+  .chat-form
+    %form.new-message
+      .chat-infomation
+        %input{type: "text",class:"chat-infomation__form" ,placeholder:"type a message"}
+        %label{class:"chat-infomation__image"}
+          = icon('fas','image')
+          %input{type:'file',class:"chat-infomation__file"}
+
+      %input{type:'submit',class:'submit-btn'}
