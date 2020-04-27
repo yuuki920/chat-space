@@ -15,12 +15,15 @@
       width: 260px;
       display: flex;
       justify-content: space-between;
+      position: relative;
     }
       .side-name {
         position: absolute;
         left: 0px;
       }
       .side-icon {
+        position: absolute;
+        right: 0px;
         &__btn {
           color:$white_color;
           text-align: right;
