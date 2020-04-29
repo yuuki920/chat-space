@@ -2,31 +2,29 @@
   .chat-header
     .chat-header-left
       .chat-header-left__title
-        title
+        =@group.name
       %ul.chat-header-left__members
-        member:
+        Member:
         %li.chat-header-left__members__member
-          name
+          - @group.users.each do |user|
+            = user.name
+
+
+
     .chat-header-right
-      = link_to edit_group_path(current_user), class: "chat-header-right__btn" do
+      = link_to edit_group_path(@group), class: "chat-header-right__btn" do
         Edit
         
   .chat-message
-    .chat-contents
-      .chat-message-user
-        .chat-message-user__user-name
-          name
-        .chat-message-user__day
-          20200411
-      .chat-message-user-message
-        name
-    
+    = render @messages
+  
   .chat-form
-    %form.new-message
+    .new-message
       .chat-infomation
-        %input{type: "text",class:"chat-infomation__form" ,placeholder:"type a message"}
-        %label{class:"chat-infomation__image"}
-          = icon('fas','image')
-          %input{type:'file',class:"chat-infomation__file"}
-
-      %input{type:'submit',class:'submit-btn'}
+        = form_for [@group, @message] do |f|
+          = f.text_field :content,class: "chat-infomation__form" ,placeholder: "type a message"
+          .chat-infomation
+            = f.label :image,class: "chat-infomation__image" do
+              = icon('fas','image')
+              = f.file_field :image,class: "chat-infomation__file"
+          = f.submit 'Send',class: 'submit-btn'
